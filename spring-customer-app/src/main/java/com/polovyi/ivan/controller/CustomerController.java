@@ -2,8 +2,6 @@ package com.polovyi.ivan.controller;
 
 import com.polovyi.ivan.dto.CreateCustomerRequest;
 import com.polovyi.ivan.dto.CustomerResponse;
-import com.polovyi.ivan.dto.PartiallyUpdateCustomerRequest;
-import com.polovyi.ivan.dto.UpdateCustomerRequest;
 import com.polovyi.ivan.service.CustomerService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -12,12 +10,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -44,27 +38,7 @@ public class CustomerController {
     public void createCustomer(@Valid @RequestBody CreateCustomerRequest createCustomerRequest,
             UriComponentsBuilder uriBuilder, HttpServletResponse response) {
         String customerId = customerService.createCustomer(createCustomerRequest).getId();
-        response.addHeader("location", uriBuilder.path("/v1/customers/{id}").buildAndExpand(customerId).toUriString());
-    }
-
-    @PutMapping(path = "/customers/{customerId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateCustomer(@PathVariable String customerId,
-            @Valid @RequestBody UpdateCustomerRequest updateCustomerRequest) {
-        customerService.updateCustomer(customerId, updateCustomerRequest);
-    }
-
-    @PatchMapping(path = "/customers/{customerId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void partiallyUpdateCustomer(@PathVariable String customerId,
-            @Valid @RequestBody PartiallyUpdateCustomerRequest partiallyUpdateCustomerRequest) {
-        customerService.partiallyUpdateCustomer(customerId, partiallyUpdateCustomerRequest);
-    }
-
-    @DeleteMapping(path = "/customers/{customerId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCustomer(@PathVariable String customerId) {
-        customerService.deleteCustomer(customerId);
+        response.addHeader("location", uriBuilder.path("/customers/{id}").buildAndExpand(customerId).toUriString());
     }
 
 }
