@@ -1,4 +1,4 @@
-package com.polovyi.ivan.example_1;
+package com.polovyi.ivan.queryparams.example_1;
 
 import com.polovyi.ivan.dto.CustomerResponse;
 import feign.Param;

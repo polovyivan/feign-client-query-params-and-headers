@@ -1,8 +1,8 @@
-package com.polovyi.ivan.example_4;
+package com.polovyi.ivan.queryparams.example_4;
 
 import com.polovyi.ivan.configuration.ClientConfig;
 import com.polovyi.ivan.dto.CustomerResponse;
-import com.polovyi.ivan.example_4.CustomerAppClient_4.GetCustomersWithFiltersQueryParams;
+import com.polovyi.ivan.queryparams.example_4.CustomerAppClient_4.GetCustomersWithFiltersQueryParams;
 import feign.Feign;
 import feign.Logger.Level;
 import feign.jackson.JacksonDecoder;
