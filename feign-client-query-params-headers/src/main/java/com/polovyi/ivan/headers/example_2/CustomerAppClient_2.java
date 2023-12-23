@@ -1,12 +1,13 @@
 package com.polovyi.ivan.headers.example_2;
 
 import com.polovyi.ivan.dto.CreateCustomerRequest;
-import feign.HeaderMap;
+import feign.Headers;
+import feign.Param;
 import feign.RequestLine;
-import java.util.Map;
 
 public interface CustomerAppClient_2 {
 
     @RequestLine("POST /customers")
-    void createCustomer(@HeaderMap Map<String, Object> headers, CreateCustomerRequest body);
+    @Headers({"Content-Type: {contentType}"})
+    void createCustomer(@Param("contentType") String contentType, CreateCustomerRequest body);
 }
